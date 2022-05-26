@@ -2,7 +2,7 @@
 
 ### Informações sobre o desafio:
 
-Suponha que existam duas listas vinculadas individualmente que se cruzam em algum ponto e se tornar uma única lista vinculada. Os ponteiros de início ou início de ambas as listas são conhecidos, mas o nó de interseção não é conhecido. Além disso, o número de nós em cada uma das listas antes eles se cruzam é desconhecido e pode ser diferente em cada lista. List1 pode ter n nós antes atinge o ponto de interseção, e List2 pode ter m nós antes de atingir o ponto de interseção onde m e n podem ser m = n, m < n ou m > n. Construa um algoritmo para encontrar o ponto de fusão entre as listas L1 e L2. 
+  Suponha que existam duas listas vinculadas individualmente que se cruzam em algum ponto e se tornar uma única lista vinculada. Os ponteiros de início ou início de ambas as listas são conhecidos, mas o nó de interseção não é conhecido. Além disso, o número de nós em cada uma das listas antes eles se cruzam é desconhecido e pode ser diferente em cada lista. List1 pode ter n nós antes atinge o ponto de interseção, e List2 pode ter m nós antes de atingir o ponto de interseção onde m e n podem ser m = n, m < n ou m > n. Construa um algoritmo para encontrar o ponto de fusão entre as listas L1 e L2. 
 
 ![ImagemDesafio](https://user-images.githubusercontent.com/48868859/170391352-5a046781-ca63-4fc9-871b-916b93c7d929.PNG)
 
@@ -20,4 +20,4 @@ Suponha que existam duas listas vinculadas individualmente que se cruzam em algu
 ```
 ### Resumo:
 
-O desafio consiste em cria 2 listas e mesclar ao final de cada lista uma terceira lista. Apos isso, pegar os endereços de memoria de cada lista e empilhar, para verificar em que ponto da pilha e da lista o endereço de memoria se coincidem, retornando o valor do dado dentro desse endereço de memoria. 
+  O desafio consiste em cria 2 listas e mesclar ao final de cada lista uma terceira lista. Apos isso, pegar os endereços de memoria de cada lista e empilhar, para verificar em que ponto da pilha e da lista o endereço de memoria se coincidem, retornando o valor do dado dentro desse endereço de memoria. 
