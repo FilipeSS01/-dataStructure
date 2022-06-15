@@ -31,6 +31,6 @@ int main(){
     ponteiro = &y;
     ponteiro2 = x;
 
-    printf("%d %d %d %d", x, y, ponteiro2, *2ponteiro);
+    printf("%d %d %d %d", x, y, ponteiro2, *ponteiro);
 return 0;
 }
