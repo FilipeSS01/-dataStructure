@@ -19,6 +19,7 @@ typedef struct list
 void initializeList(List *list);
 void insertStart(List *list, int dado, bool isCircular);
 void insertEnd(List *list, int dado, bool isCircular);
+void print(List list, bool isCircular);
 
 int main()
 {
@@ -78,5 +79,37 @@ void insertEnd(List *list, int dado, bool isCircular)
         list->end = new;
         (isCircular) ? (list->end->next = list->start) : (list->end->next = NULL);
     }
+    return;
+}
+
+void print(List list, bool isCircular)
+{
+    Node *aux;
+
+    if (list.start == NULL)
+    {
+        return;
+    }
+    else
+    {
+        aux = list.start;
+        if (isCircular)
+        {
+            do
+            {
+                printf("%d ", aux->dado);
+                aux = aux->next;
+            } while (aux != list.start);
+        }
+        else
+        {
+            while (aux != NULL)
+            {
+                printf("%d ", aux->dado);
+                aux = aux->next;
+            }
+        }
+    }
+    printf("\n");
     return;
 }
