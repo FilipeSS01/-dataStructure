@@ -22,8 +22,9 @@ void insertEnd(Queue *queue, int dado, bool isCircular);
 
 int main()
 {
-    Queue queue;
+    Queue queue, queueCircular;
     initializeQueue(&queue);
+    initializeQueue(&queueCircular);
     return 0;
 }
 
