@@ -115,7 +115,7 @@ int remover(struct Lista *lista, int dado)
 		if (aux->dado == dado)
 		{
 			qtdDel++;
-			if (aux == lista->inicio) 
+			if (aux == lista->inicio)
 			{
 				lista->inicio = aux->prox;
 				lista->fim->prox = lista->inicio;
