@@ -20,6 +20,7 @@ void initializeList(List *list);
 void insertStart(List *list, int dado, bool isCircular);
 void insertEnd(List *list, int dado, bool isCircular);
 void print(List list, bool isCircular);
+void merge(List *list, List *listCircular);
 
 int main()
 {
@@ -34,6 +35,11 @@ int main()
     insertStart(&listCircular, 4, true);
     insertStart(&listCircular, 5, true);
     insertStart(&listCircular, 6, true);
+
+    print(list, false);
+    print(listCircular, true);
+
+    merge(&list, &listCircular);
 
     print(list, false);
     print(listCircular, true);
@@ -123,4 +129,10 @@ void print(List list, bool isCircular)
     }
     printf("\n");
     return;
+}
+
+void merge(List *list, List *listCircular)
+{
+    list->end->next = listCircular->start;
+    listCircular->end->next = list->end;
 }
