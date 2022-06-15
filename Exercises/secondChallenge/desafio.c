@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct node
 {
@@ -16,6 +17,7 @@ typedef struct queue
 } Queue;
 
 void initializeQueue(Queue *queue);
+void insertStart(Queue *queue, int dado, bool isCircular);
 
 int main()
 {
@@ -28,4 +30,28 @@ void initializeQueue(Queue *queue)
 {
     queue->start = NULL;
     queue->end = NULL;
+}
+
+void insertStart(Queue *queue, int dado, bool isCircular)
+{
+    Node *new = malloc(sizeof(Queue));
+    if (new == NULL)
+    {
+        return;
+    }
+    new->dado = dado;
+    if (queue->start == NULL)
+    {
+        queue->start = new;
+        queue->end = new;
+        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
+    }
+    else
+    {
+        new->next = queue->start;
+        queue->start = new;
+        if (isCircular)
+            queue->end->next = queue->start;
+    }
+    return;
 }
