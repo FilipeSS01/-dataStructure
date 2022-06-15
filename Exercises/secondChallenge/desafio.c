@@ -26,6 +26,17 @@ int main()
     List list, listCircular;
     initializeList(&list);
     initializeList(&listCircular);
+
+    insertStart(&list, 1, false);
+    insertStart(&list, 2, false);
+    insertStart(&list, 3, false);
+
+    insertStart(&listCircular, 4, true);
+    insertStart(&listCircular, 5, true);
+    insertStart(&listCircular, 6, true);
+
+    print(list, false);
+    print(listCircular, true);
     return 0;
 }
 
