@@ -10,73 +10,73 @@ typedef struct node
     struct node *next;
 } Node;
 
-typedef struct queue
+typedef struct list
 {
     struct node *start;
     struct node *end;
-} Queue;
+} List;
 
-void initializeQueue(Queue *queue);
-void insertStart(Queue *queue, int dado, bool isCircular);
-void insertEnd(Queue *queue, int dado, bool isCircular);
+void initializeList(List *list);
+void insertStart(List *list, int dado, bool isCircular);
+void insertEnd(List *list, int dado, bool isCircular);
 
 int main()
 {
-    Queue queue, queueCircular;
-    initializeQueue(&queue);
-    initializeQueue(&queueCircular);
+    List list, listCircular;
+    initializeList(&list);
+    initializeList(&listCircular);
     return 0;
 }
 
-void initializeQueue(Queue *queue)
+void initializeList(List *list)
 {
-    queue->start = NULL;
-    queue->end = NULL;
+    list->start = NULL;
+    list->end = NULL;
 }
 
-void insertStart(Queue *queue, int dado, bool isCircular)
+void insertStart(List *list, int dado, bool isCircular)
 {
-    Node *new = malloc(sizeof(Queue));
+    Node *new = malloc(sizeof(List));
     if (new == NULL)
     {
         return;
     }
     new->dado = dado;
-    if (queue->start == NULL)
+    if (list->start == NULL)
     {
-        queue->start = new;
-        queue->end = new;
-        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
+        list->start = new;
+        list->end = new;
+        (isCircular) ? (list->end->next = list->start) : (list->end->next = NULL);
     }
     else
     {
-        new->next = queue->start;
-        queue->start = new;
+        new->next = list->start;
+        list->start = new;
         if (isCircular)
-            queue->end->next = queue->start;
+            list->end->next = list->start;
     }
     return;
 }
 
-void insertEnd(Queue *queue, int dado, bool isCircular)
+void insertEnd(List *list, int dado, bool isCircular)
 {
-    Node *new = malloc(sizeof(Queue));
+    Node *new = malloc(sizeof(List));
     if (new == NULL)
     {
         return;
     }
     new->dado = dado;
-    if (queue->start == NULL)
+    if (list->start == NULL)
     {
-        queue->start = new;
-        queue->end = new;
-        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
+        list->start = new;
+        list->end = new;
+        (isCircular) ? (list->end->next = list->start) : (list->end->next = NULL);
     }
     else
     {
-        queue->end->next = new;
-        queue->end = new;
-        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
+        list->end->next = new;
+        list->end = new;
+        (isCircular) ? (list->end->next = list->start) : (list->end->next = NULL);
     }
     return;
 }
