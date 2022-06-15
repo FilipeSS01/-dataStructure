@@ -20,29 +20,35 @@ void initializeList(List *list);
 void insertStart(List *list, int dado, bool isCircular);
 void insertEnd(List *list, int dado, bool isCircular);
 void print(List list, bool isCircular);
-void merge(List *list, List *listCircular);
+void merge(List *list, List listCircular);
+int hasLoop(List *list, int *quantNo);
 
 int main()
 {
     List list, listCircular;
+    int quantNo = 0;
     initializeList(&list);
     initializeList(&listCircular);
 
     insertStart(&list, 1, false);
     insertStart(&list, 2, false);
     insertStart(&list, 3, false);
+    // insertStart(&list, 4, false);
 
-    insertStart(&listCircular, 4, true);
     insertStart(&listCircular, 5, true);
     insertStart(&listCircular, 6, true);
+    insertStart(&listCircular, 7, true);
+    insertStart(&listCircular, 7, true);
+    insertStart(&listCircular, 7, true);
 
     print(list, false);
     print(listCircular, true);
 
-    merge(&list, &listCircular);
+    merge(&list, listCircular);
 
-    print(list, false);
-    print(listCircular, true);
+    if (hasLoop(&list, &quantNo))
+        printf("Amount of NO is %d", quantNo);
+
     return 0;
 }
 
@@ -131,8 +137,22 @@ void print(List list, bool isCircular)
     return;
 }
 
-void merge(List *list, List *listCircular)
+void merge(List *list, List listCircular)
 {
-    list->end->next = listCircular->start;
-    listCircular->end->next = list->end;
+    list->end->next = listCircular.start;
+}
+
+int hasLoop(List *list, int *quantNo)
+{
+    Node *slow = list->start;
+    Node *fast = list->start;
+    do
+    {
+        (*quantNo)++;
+        slow = slow->next;
+        if (slow->next == NULL)
+            return 0;
+        fast = fast->next->next;
+    } while (slow != fast);
+    return 1;
 }
