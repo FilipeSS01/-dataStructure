@@ -18,6 +18,7 @@ typedef struct queue
 
 void initializeQueue(Queue *queue);
 void insertStart(Queue *queue, int dado, bool isCircular);
+void insertEnd(Queue *queue, int dado, bool isCircular);
 
 int main()
 {
@@ -52,6 +53,29 @@ void insertStart(Queue *queue, int dado, bool isCircular)
         queue->start = new;
         if (isCircular)
             queue->end->next = queue->start;
+    }
+    return;
+}
+
+void insertEnd(Queue *queue, int dado, bool isCircular)
+{
+    Node *new = malloc(sizeof(Queue));
+    if (new == NULL)
+    {
+        return;
+    }
+    new->dado = dado;
+    if (queue->start == NULL)
+    {
+        queue->start = new;
+        queue->end = new;
+        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
+    }
+    else
+    {
+        queue->end->next = new;
+        queue->end = new;
+        (isCircular) ? (queue->end->next = queue->start) : (queue->end->next = NULL);
     }
     return;
 }
