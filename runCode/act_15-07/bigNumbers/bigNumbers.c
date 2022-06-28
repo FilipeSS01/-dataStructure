@@ -18,11 +18,12 @@ typedef struct List
 
 void initialize(List *list);
 int insert(List *list, int value);
+int print(List list);
 
 int main()
 {
-    List *numbers1;
-    List *numbers2;
+    List numbers1;
+    List numbers2;
 
     initialize(&numbers1);
     initialize(&numbers2);
@@ -34,7 +35,6 @@ void initialize(List *list)
     list->start = NULL;
     list->end = NULL;
 }
-
 int insert(List *list, int value)
 {
     Node *aux = malloc(sizeof(Node));
@@ -56,5 +56,22 @@ int insert(List *list, int value)
         aux->next = NULL;
         list->end = aux;
     }
+    return 0;
+}
+int print(List list)
+{
+    Node *aux;
+
+    if (list.start == NULL)
+        return -1;
+    aux = list.start;
+
+    while (aux != NULL)
+    {
+        printf("%d", aux->value);
+        aux = aux->next;
+    }
+    printf("\n");
+
     return 0;
 }
