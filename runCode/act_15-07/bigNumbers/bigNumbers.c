@@ -5,8 +5,9 @@
 
 typedef struct Node
 {
-    int dado;
+    int value;
     struct Node *next;
+    struct Node *prev;
 } Node;
 
 typedef struct List
@@ -16,7 +17,7 @@ typedef struct List
 } List;
 
 void initialize(List *list);
-int insert(List *list, int dado);
+int insert(List *list, int value);
 
 int main()
 {
@@ -32,4 +33,28 @@ void initialize(List *list)
 {
     list->start = NULL;
     list->end = NULL;
+}
+
+int insert(List *list, int value)
+{
+    Node *aux = malloc(sizeof(Node));
+    if (aux == NULL)
+        return -1;
+
+    aux->value = value;
+    if (list->start == NULL)
+    {
+        list->start = aux;
+        list->end = aux;
+        aux->next = NULL;
+        aux->prev = NULL;
+    }
+    else
+    {
+        list->end->next = aux;
+        aux->prev = list->end;
+        aux->next = NULL;
+        list->end = aux;
+    }
+    return 0;
 }
