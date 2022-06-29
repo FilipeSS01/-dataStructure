@@ -17,11 +17,13 @@ typedef struct List
     int quant;
 } List;
 
+void menu();
 void initialize(List *list);
 int insertNumbers(List *list);
 int insert(List *list, int value);
 int calcNumbers(List list, List list2, List result);
 int print(List list);
+void printResult(List list, List list2, List result);
 
 int main()
 {
@@ -33,6 +35,8 @@ int main()
     initialize(&numbers2);
     initialize(&result);
 
+    menu();
+
     insertNumbers(&numbers1);
     insertNumbers(&numbers2);
 
@@ -41,6 +45,12 @@ int main()
     return 0;
 }
 
+void menu()
+{
+    printf("================================================================");
+    printf("\n\t\t\tBigNumbers\n");
+    printf("================================================================\n\n");
+}
 void initialize(List *list)
 {
     list->start = NULL;
@@ -55,7 +65,7 @@ int insertNumbers(List *list)
         Node *aux = malloc(sizeof(Node));
         if (aux == NULL)
             return -1;
-
+        printf("Number: ");
         scanf("%d", &value);
         if (value != -1)
         {
@@ -152,7 +162,7 @@ int calcNumbers(List list, List list2, List result)
         if (aux2 != NULL)
             aux2 = aux2->prev;
     }
-    print(result);
+    printResult(list, list2, result);
     return 1;
 }
 int print(List list)
@@ -163,12 +173,22 @@ int print(List list)
         return -1;
     aux = list.start;
 
+    printf("\t\t\t");
     while (aux != NULL)
     {
         printf("%d", aux->value);
         aux = aux->next;
     }
-    printf("\n");
 
     return 0;
+}
+void printResult(List list, List list2, List result)
+{
+    printf("\n================================================================\n");
+    print(list);
+    printf("\n");
+    print(list2);
+    printf("\t+\n\t---------------------------------------\n");
+    print(result);
+    printf("\n================================================================");
 }
