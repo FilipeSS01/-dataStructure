@@ -20,7 +20,7 @@ typedef struct List
 void menu();
 void initialize(List *list);
 int insertNumbers(List *list);
-int insert(List *list, int value);
+int insertResult(List *list, int value);
 int calcNumbers(List list, List list2, List result);
 int print(List list);
 void printResult(List list, List list2, List result);
@@ -99,7 +99,7 @@ int insertNumbers(List *list)
     } while (value != -1);
     return 0;
 }
-int insert(List *list, int value)
+int insertResult(List *list, int value)
 {
     Node *aux = malloc(sizeof(Node));
     if (aux == NULL)
@@ -156,7 +156,7 @@ int calcNumbers(List list, List list2, List result)
         else
             carry = 0;
 
-        insert(&result, sum);
+        insertResult(&result, sum);
 
         aux = aux->prev;
         if (aux2 != NULL)
