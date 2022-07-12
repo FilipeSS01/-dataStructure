@@ -12,6 +12,8 @@ typedef struct reg
     char description[MAX_DESCRIPTION];
 } Register;
 
+void order(Register *reg, int numberList);
+
 int main()
 {
     int numberList, result;
@@ -34,11 +36,17 @@ int main()
         gets(reg[i].description);
     }
 
-    // for (int i = 0; i < numberList; i++)
-    // {
-    //     printf("\nRegister.ID = %d\n", reg[i].id);
-    //     printf("Register.Description = %s\n", reg[i].description);
-    // }
+    order(reg, numberList);
+
+    printf("\n==================================================================\n");
+
+    for (int i = 0; i < numberList; i++)
+    {
+        printf("\nRegister.ID = %d\n", reg[i].id);
+        printf("Register.Description = %s\n", reg[i].description);
+    }
+
+    printf("\n==================================================================\n");
 
     for (int i = 0; i < numberList; i++)
     {
@@ -46,12 +54,27 @@ int main()
         if (result == 0)
         {
             printf("\n==================================================================\n");
-            printf("\t\tRegister.ID = %d\n", reg[i].id);
-            printf("\t\tRegister.Description = %s", reg[i].description);
+            printf("\n\t\tRegister.ID = %d\n", reg[i].id);
+            printf("\t\tRegister.Description = %s\n", reg[i].description);
             printf("\n==================================================================\n");
-
             break;
         }
     }
     return 0;
+}
+
+void order(Register *reg, int numberList)
+{
+    for (int x = 0; x < numberList; x++)
+    {
+        for (int i = 0; i < numberList; i++)
+        {
+            if ((reg[i].id > reg[i + 1].id) && (i + 1 < numberList))
+            {
+                Register temp = reg[i];
+                reg[i] = reg[i + 1];
+                reg[i + 1] = temp;
+            }
+        }
+    }
 }
