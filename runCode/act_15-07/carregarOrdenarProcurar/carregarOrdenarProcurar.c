@@ -41,18 +41,22 @@ int main()
 
 void order(Register *reg, int numberList)
 {
-    for (int x = 0; x < numberList; x++)
+
+    int y;
+    do
     {
+        y = 0;
         for (int i = 0; i < numberList; i++)
         {
-            if ((reg[i].id > reg[i + 1].id) && (i + 1 < numberList))
+            if ((strncmp(reg[i].description, reg[i + 1].description, strlen(reg[i].description)) > 0) && (i + 1 < numberList))
             {
                 Register temp = reg[i];
                 reg[i] = reg[i + 1];
                 reg[i + 1] = temp;
+                y++;
             }
         }
-    }
+    } while (y > 0);
 }
 void read(Register *reg, int numberList)
 {
@@ -77,15 +81,26 @@ void print(Register *reg, int numberList)
 }
 void search(Register *reg, int numberList, char key[MAX_DESCRIPTION])
 {
-    int result;
-    for (int i = 0; i < numberList; i++)
+    int low, high, mid;
+    low = 0;
+    high = numberList - 1;
+
+    while (low <= high)
     {
-        result = strcmp(reg[i].description, key);
-        if (result == 0)
+        mid = (low + high) / 2;
+        if (strcmp(key, reg[mid].description) < 0)
+        {
+            high = mid - 1;
+        }
+        else if (strcmp(key, reg[mid].description) > 0)
+        {
+            low = mid + 1;
+        }
+        else
         {
             printf("\n==================================================================\n");
-            printf("\n\t\tRegister.ID = %d\n", reg[i].id);
-            printf("\t\tRegister.Description = %s\n", reg[i].description);
+            printf("\n\t\tRegister.ID = %d\n", reg[mid].id);
+            printf("\t\tRegister.Description = %s\n", reg[mid].description);
             printf("\n==================================================================\n");
             break;
         }
