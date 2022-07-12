@@ -41,7 +41,6 @@ int main()
 
 void order(Register *reg, int numberList)
 {
-
     int y;
     do
     {
