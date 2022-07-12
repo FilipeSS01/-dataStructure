@@ -12,30 +12,24 @@ typedef struct reg
     char description[MAX_DESCRIPTION];
 } Register;
 
+void read(Register *reg, int numberList);
 void order(Register *reg, int numberList);
 
 int main()
 {
     int numberList, result;
     char search[MAX_DESCRIPTION];
+
     printf("Records number = ");
     scanf("%d", &numberList);
+
     printf("Search = ");
     fflush(stdin);
     gets(search);
-    fflush(stdin);
 
     Register *reg = (Register *)malloc(numberList * sizeof(Register));
 
-    for (int i = 0; i < numberList; i++)
-    {
-        printf("\nRegister.ID = ");
-        scanf("%d", &reg[i].id);
-        printf("Register.Description = ");
-        fflush(stdin);
-        gets(reg[i].description);
-    }
-
+    read(reg, numberList);
     order(reg, numberList);
 
     printf("\n==================================================================\n");
@@ -76,5 +70,16 @@ void order(Register *reg, int numberList)
                 reg[i + 1] = temp;
             }
         }
+    }
+}
+void read(Register *reg, int numberList)
+{
+    for (int i = 0; i < numberList; i++)
+    {
+        printf("\nRegister.ID = ");
+        scanf("%d", &reg[i].id);
+        printf("Register.Description = ");
+        fflush(stdin);
+        gets(reg[i].description);
     }
 }
