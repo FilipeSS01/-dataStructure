@@ -14,12 +14,14 @@ typedef struct reg
 
 int main()
 {
-    int numberList, test;
+    int numberList, result;
     char search[MAX_DESCRIPTION];
+    printf("Records number = ");
     scanf("%d", &numberList);
     printf("Search = ");
     fflush(stdin);
     gets(search);
+    fflush(stdin);
 
     Register *reg = (Register *)malloc(numberList * sizeof(Register));
 
@@ -32,20 +34,24 @@ int main()
         gets(reg[i].description);
     }
 
-    printf("\n==================================================================\n");
+    // for (int i = 0; i < numberList; i++)
+    // {
+    //     printf("\nRegister.ID = %d\n", reg[i].id);
+    //     printf("Register.Description = %s\n", reg[i].description);
+    // }
 
     for (int i = 0; i < numberList; i++)
     {
-        printf("\nRegister.ID = %d\n", reg[i].id);
-        printf("Register.Description = %s\n", reg[i].description);
-    }
+        result = strcmp(reg[i].description, search);
+        if (result == 0)
+        {
+            printf("\n==================================================================\n");
+            printf("\t\tRegister.ID = %d\n", reg[i].id);
+            printf("\t\tRegister.Description = %s", reg[i].description);
+            printf("\n==================================================================\n");
 
-    for (int i = 0; i < numberList; i++)
-    {
-        // strncmp(reg[i].description, );
-        strncmp(search, reg)
+            break;
+        }
     }
-
-    printf("Search %s", search);
     return 0;
 }
