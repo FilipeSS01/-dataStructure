@@ -14,6 +14,7 @@ typedef struct reg
 
 void read(Register *reg, int numberList);
 void order(Register *reg, int numberList);
+void print(Register *reg, int numberList);
 
 int main()
 {
@@ -31,16 +32,7 @@ int main()
 
     read(reg, numberList);
     order(reg, numberList);
-
-    printf("\n==================================================================\n");
-
-    for (int i = 0; i < numberList; i++)
-    {
-        printf("\nRegister.ID = %d\n", reg[i].id);
-        printf("Register.Description = %s\n", reg[i].description);
-    }
-
-    printf("\n==================================================================\n");
+    print(reg, numberList);
 
     for (int i = 0; i < numberList; i++)
     {
@@ -82,4 +74,14 @@ void read(Register *reg, int numberList)
         fflush(stdin);
         gets(reg[i].description);
     }
+}
+void print(Register *reg, int numberList)
+{
+    printf("\n==================================================================\n");
+    for (int i = 0; i < numberList; i++)
+    {
+        printf("\nRegister.ID = %d\n", reg[i].id);
+        printf("Register.Description = %s\n", reg[i].description);
+    }
+    printf("\n==================================================================\n");
 }
