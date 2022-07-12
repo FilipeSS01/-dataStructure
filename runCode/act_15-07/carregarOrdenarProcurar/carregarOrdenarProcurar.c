@@ -15,37 +15,27 @@ typedef struct reg
 void read(Register *reg, int numberList);
 void order(Register *reg, int numberList);
 void print(Register *reg, int numberList);
+void search(Register *reg, int numberList, char key[MAX_DESCRIPTION]);
 
 int main()
 {
-    int numberList, result;
-    char search[MAX_DESCRIPTION];
+    int numberList;
+    char key[MAX_DESCRIPTION];
 
     printf("Records number = ");
     scanf("%d", &numberList);
 
     printf("Search = ");
     fflush(stdin);
-    gets(search);
+    gets(key);
 
     Register *reg = (Register *)malloc(numberList * sizeof(Register));
 
     read(reg, numberList);
     order(reg, numberList);
     print(reg, numberList);
+    search(reg, numberList, key);
 
-    for (int i = 0; i < numberList; i++)
-    {
-        result = strcmp(reg[i].description, search);
-        if (result == 0)
-        {
-            printf("\n==================================================================\n");
-            printf("\n\t\tRegister.ID = %d\n", reg[i].id);
-            printf("\t\tRegister.Description = %s\n", reg[i].description);
-            printf("\n==================================================================\n");
-            break;
-        }
-    }
     return 0;
 }
 
@@ -84,4 +74,20 @@ void print(Register *reg, int numberList)
         printf("Register.Description = %s\n", reg[i].description);
     }
     printf("\n==================================================================\n");
+}
+void search(Register *reg, int numberList, char key[MAX_DESCRIPTION])
+{
+    int result;
+    for (int i = 0; i < numberList; i++)
+    {
+        result = strcmp(reg[i].description, key);
+        if (result == 0)
+        {
+            printf("\n==================================================================\n");
+            printf("\n\t\tRegister.ID = %d\n", reg[i].id);
+            printf("\t\tRegister.Description = %s\n", reg[i].description);
+            printf("\n==================================================================\n");
+            break;
+        }
+    }
 }
