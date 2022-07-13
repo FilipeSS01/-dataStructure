@@ -13,7 +13,9 @@ typedef struct reg
 } Register;
 
 void read(Register *reg, int numberList);
-void order(Register *reg, int numberList);
+void swap(Register *a, Register *b);
+int partition(Register arr[], int low, int high);
+void quickSort(Register arr[], int low, int high);
 void print(Register *reg, int numberList);
 void search(Register *reg, int numberList, char key[MAX_DESCRIPTION]);
 
@@ -32,16 +34,13 @@ int main()
     Register *reg = (Register *)malloc(numberList * sizeof(Register));
 
     read(reg, numberList);
-    order(reg, numberList);
+    quickSort(reg, 0, numberList - 1);
     print(reg, numberList);
     search(reg, numberList, key);
 
     return 0;
 }
 
-void order(Register *reg, int numberList)
-{
-}
 void read(Register *reg, int numberList)
 {
     for (int i = 0; i < numberList; i++)
@@ -51,6 +50,38 @@ void read(Register *reg, int numberList)
         printf("Register.Description = ");
         fflush(stdin);
         gets(reg[i].description);
+    }
+}
+void swap(Register *a, Register *b)
+{
+    Register t = *a;
+    *a = *b;
+    *b = t;
+}
+int partition(Register arr[], int low, int high)
+{
+    char pivot[MAX_DESCRIPTION];
+    strcpy(pivot, arr[high].description);
+    int i = (low - 1);
+
+    for (int j = low; j <= high - 1; j++)
+    {
+        if (strcmp(arr[j].description, pivot) <= 0)
+        {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+void quickSort(Register arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
     }
 }
 void print(Register *reg, int numberList)
