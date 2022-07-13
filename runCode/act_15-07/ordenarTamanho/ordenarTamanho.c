@@ -28,7 +28,7 @@ int main()
     order(words, size);
     print(words, size);
     free(words);
-    
+
     return 0;
 }
 
@@ -73,5 +73,4 @@ void print(Words *words, int size)
         printf("%s ", words[i].str);
         i++;
     } while (i < size);
-    printf("\n");
 }
