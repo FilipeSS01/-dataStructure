@@ -14,6 +14,7 @@ typedef struct words
 
 int splitMatrix(char *string, Words *words);
 void order(Words *words, int size);
+void print(Words *words, int size);
 
 int main()
 {
@@ -41,7 +42,6 @@ int splitMatrix(char *string, Words *words)
 
     return i;
 }
-
 void order(Words *words, int size)
 {
     int y;
@@ -59,4 +59,15 @@ void order(Words *words, int size)
             }
         }
     } while (y > 0);
+}
+void print(Words *words, int size)
+{
+    setlocale(LC_ALL, "Portuguese");
+    int i = 0;
+    do
+    {
+        printf("%s ", words[i].str);
+        i++;
+    } while (i < size);
+    printf("\n");
 }
