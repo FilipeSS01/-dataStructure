@@ -22,9 +22,13 @@ int main()
     Words *words = (Words *)malloc(50 * sizeof(Words));
     char str[MAX_STR];
     int size = 0;
+
     fgets(str, sizeof(str), stdin);
     size = splitMatrix(str, words);
-
+    order(words, size);
+    print(words, size);
+    free(words);
+    
     return 0;
 }
 
