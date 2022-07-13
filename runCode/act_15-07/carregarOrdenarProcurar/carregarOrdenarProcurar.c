@@ -41,21 +41,6 @@ int main()
 
 void order(Register *reg, int numberList)
 {
-    int y;
-    do
-    {
-        y = 0;
-        for (int i = 0; i < numberList; i++)
-        {
-            if ((strncmp(reg[i].description, reg[i + 1].description, strlen(reg[i].description)) > 0) && (i + 1 < numberList))
-            {
-                Register temp = reg[i];
-                reg[i] = reg[i + 1];
-                reg[i + 1] = temp;
-                y++;
-            }
-        }
-    } while (y > 0);
 }
 void read(Register *reg, int numberList)
 {
