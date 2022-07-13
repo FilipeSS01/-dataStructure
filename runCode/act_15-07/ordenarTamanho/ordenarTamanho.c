@@ -13,6 +13,7 @@ typedef struct words
 } Words;
 
 int splitMatrix(char *string, Words *words);
+void order(Words *words, int size);
 
 int main()
 {
@@ -39,4 +40,23 @@ int splitMatrix(char *string, Words *words)
     }
 
     return i;
+}
+
+void order(Words *words, int size)
+{
+    int y;
+    do
+    {
+        y = 0;
+        for (int i = 0; i < size - 1; i++)
+        {
+            if (strlen(words[i].str) > strlen(words[i + 1].str))
+            {
+                Words temp = words[i];
+                words[i] = words[i + 1];
+                words[i + 1] = temp;
+                y++;
+            }
+        }
+    } while (y > 0);
 }
