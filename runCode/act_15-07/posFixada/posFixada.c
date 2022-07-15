@@ -5,35 +5,63 @@
 
 typedef struct stack
 {
-    float dado;
+    float value;
     struct stack *next;
 } Stack;
 
 void initialize(Stack *stack);
-int push(Stack *stack, float dado);
-int pop(Stack *stack);
+void push(Stack *stack, float value);
+float pop(Stack *stack);
+void print(Stack stack);
 
 int main()
 {
+    Stack stack;
+    initialize(&stack);
 
     return 0;
 }
 
 void initialize(Stack *stack)
 {
-    // stack->dado = NULL;
+    // stack->value = NULL;
     stack->next = NULL;
 }
-int push(Stack *stack, float dado)
+void push(Stack *stack, float value)
 {
     Stack *new = (Stack *)malloc(sizeof(Stack));
 
     if (new == NULL)
-        return 0;
+        return;
 
-    new->dado = dado;
+    new->value = value;
     new->next = stack->next;
     stack->next = new;
+}
+float pop(Stack *stack)
+{
+    Stack *aux = stack->next;
+    float value = aux->value;
 
-    return 1;
+    stack->next = stack->next->next;
+    free(aux);
+
+    return value;
+}
+void print(Stack stack)
+{
+    Stack *aux = stack.next;
+
+    if (aux == NULL)
+    {
+        printf("\nPilha esta vazia !");
+        return;
+    }
+
+    printf("\nPilha\n");
+    while (aux != NULL)
+    {
+        printf("%.2f\n", aux->value);
+        aux = aux->next;
+    }
 }
